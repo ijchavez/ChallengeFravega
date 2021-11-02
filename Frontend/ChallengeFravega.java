@@ -1,8 +1,8 @@
-package ChallengeFravega.Frontend;
+package ChallengesVarios.Fravega.Frontend;
 
-import ChallengeFravega.Frontend.Pages.HeladeraFreezerCavasPage;
-import ChallengeFravega.Frontend.Pages.LandingPage;
-import ChallengeFravega.Utilities.Utilities;
+import ChallengesVarios.Fravega.Frontend.Pages.HeladeraFreezerCavasPage;
+import ChallengesVarios.Fravega.Frontend.Pages.LandingPage;
+import ChallengesVarios.Fravega.Utilities.Utilities;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -30,7 +30,8 @@ public class ChallengeFravega extends TestBase{
         List<WebElement> brandList = heladeraFreezerCavasPage.getBrandAggregationList();
 
         int firstBrand = 0;
-        String firstBrandName = utils.getTextFromAnElement(brandList.get(firstBrand));
+        String firstBrandNameComplete = utils.getTextFromAnElement(brandList.get(firstBrand));
+        String firstBrandName = utils.makeSplit(firstBrandNameComplete, " ", 0);
 
         utils.clickOnAWebElementFromAList(brandList, firstBrand);
 
@@ -56,7 +57,7 @@ public class ChallengeFravega extends TestBase{
 
         }
         for(String item : list){
-            Assert.assertTrue(item.contains(wordToSearch), "El item no contiene la palabra: " + wordToSearch);
+            Assert.assertTrue(item.contains(firstBrandName), "El item no contiene la palabra: " + firstBrandName);
 
         }
         Assert.assertEquals(numberResults, list.size(), "La cantidad de resultados es incorrecta");
